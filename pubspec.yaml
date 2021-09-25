@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  intl: ^0.16.1
   google_fonts: ^0.2.0
   flutter:
     sdk: flutter
@@ -67,6 +68,8 @@ flutter:
     - android/app/src/main/res/drawable/fast-food.png
     - android/app/src/main/res/drawable/house.png
     - android/app/src/main/res/drawable/tik-tok.png
+    - android/app/src/main/res/drawable/Icon1.png
+    - android/app/src/main/res/drawable/Icon6.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
