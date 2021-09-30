@@ -65,7 +65,6 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - android/app/src/main/res/drawable/internet.png
-    - android/app/src/main/res/drawable/fast-food.png
     - android/app/src/main/res/drawable/house.png
     - android/app/src/main/res/drawable/tik-tok.png
     - android/app/src/main/res/drawable/Icon1.png

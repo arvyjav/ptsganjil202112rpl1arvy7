@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'House.dart';
 import 'Resto.dart';
-
+import 'Addition.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
       initialIndex: 1,
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -23,7 +23,8 @@ class _NavBarState extends State<NavBar> {
           bottom: TabBar(
               tabs: <Widget>[
                 Tab(icon: Icon(Icons.home, color: Colors.black)),
-                Tab(icon: Icon(Icons.food_bank, color: Colors.black)),
+                Tab(icon: Icon(Icons.fastfood, color: Colors.black)),
+                Tab(icon: Icon(Icons.restaurant_menu, color: Colors.black)),
               ]
           ),
         ),
@@ -31,6 +32,7 @@ class _NavBarState extends State<NavBar> {
           children: <Widget> [
             Rumah(),
             Resto(),
+            Additional(),
 
           ],
         ),

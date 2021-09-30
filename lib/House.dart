@@ -72,7 +72,7 @@ class _RumahState extends State<Rumah> {
                               ),
                               CategoryW(
                                 image: 'android/app/src/main/res/drawable/Icon6.png',
-                                text: 'Transport',
+                                text: 'Foods',
                                 color: Color(0xFF43DC64),
                               )
                             ],

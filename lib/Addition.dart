@@ -1,35 +1,34 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
+import 'konek.dart';
 import 'package:http/http.dart';
-import 'food.dart';
+import 'deep.dart';
 import 'dart:convert';
-import 'detail.dart';
 
-class Resto extends StatefulWidget {
-  const Resto({Key? key}) : super(key: key);
+class Additional extends StatefulWidget {
+  Additional({Key? key}) : super(key: key);
 
   @override
-  _RestoState createState() => _RestoState();
+  _AdditionalState createState() => _AdditionalState();
 }
 
-class _RestoState extends State<Resto> {
-  late List<FoodModel> list = [];
+class _AdditionalState extends State<Additional> {
+  late List<AddModel> list = [];
   late List<dynamic> data;
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    fetchFood();
+    fetchKonek();
   }
 
-  Future<void> fetchFood() async {
+  Future<void> fetchKonek() async {
     setState(() {
       isLoading = true;
     });
 
     final response = await get(Uri.parse(
-        'https://www.themealdb.com/api/json/v1/1/search.php?f=a'));
+        'https://www.themealdb.com/api/json/v1/1/categories.php'));
 
     setState(() {
       isLoading = false;
@@ -40,24 +39,21 @@ class _RestoState extends State<Resto> {
       // then parse the JSON.
       var res = jsonDecode(response.body);
       setState(() {
-        data = res['meals'];
+        data = res['categories'];
         for (int i = 0; i < data.length; i++) {
-          list.add(new FoodModel(
-            data[i]['strMeal'],
-            data[i]['strInstructions'],
-            data[i]['strMealThumb'],
-            data[i]['strArea'],
+          list.add(new AddModel(
             data[i]['strCategory'],
-            data[i]['idMeal'],));
+            data[i]['strCategoryThumb'],
+            data[i]['strCategoryDescription'],
+            ));
         }
       });
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load foods');
+      throw Exception('Failed to load Pict');
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +81,7 @@ class _RestoState extends State<Resto> {
     );
   }
 
-  Widget buildList(List<FoodModel> list) {
+  Widget buildList(List<AddModel> list) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -97,7 +93,7 @@ class _RestoState extends State<Resto> {
             child: InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return FoodDetail(list[index]);
+                  return Deep(list[index]);
                 }));
               },
               child: Column(
@@ -110,10 +106,10 @@ class _RestoState extends State<Resto> {
                           borderRadius: BorderRadius.circular(15.0),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage("${list[index].strMealThumb}"))),
+                              image: NetworkImage("${list[index].strCategoryThumb}"))),
 
                       child: Center(
-                        child: Text('${list[index].strMeal}',style: TextStyle(
+                        child: Text('${list[index].strCategory}',style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontFamily: "Anya",
@@ -132,5 +128,7 @@ class _RestoState extends State<Resto> {
       },
       itemCount: list.length,
     );
+    
   }
 }
+

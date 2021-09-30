@@ -1,7 +1,7 @@
 class FoodModel {
-  final String name, description, pictureId, city;
-  final dynamic rating;
+  final String strMeal, strInstructions, strMealThumb, strArea;
+  final dynamic strCategory, idMeal;
 
-  FoodModel(this.name, this.description, this.pictureId, this.city, this.rating);
+  FoodModel(this.strMeal, this.strInstructions, this.strMealThumb, this.strArea, this.strCategory, this.idMeal);
 
 }
